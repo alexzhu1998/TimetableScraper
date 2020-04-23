@@ -25,7 +25,7 @@ class URL:
         elif self.level == 1:
             return "http://timetable.unsw.edu.au/"+str(self.year)+"/" + str(self.course) +"KENS.html"
         elif self.level == 2:
-            return "http://timetable.unsw.edu.au/"+str(self.year)+"/" + str(self.code) +".html#S1-5669"
+            return "http://timetable.unsw.edu.au/"+str(self.year)+"/" + str(self.code) +".html"
         else:
             print("INCORRECT LEVEL")
             return ""
