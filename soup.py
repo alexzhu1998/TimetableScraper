@@ -124,8 +124,8 @@ class Tab(URL):
                 Dict2['Day/Start Time'] = Dict2['Day/Start Time'] + [y[6]]
                 Dict2['Day'] = Dict2['Day'] + [[i[0:3] for i in y[6].split('), ')]]
                 Dict2['Time'] = Dict2['Time'] + [[i[3:i.find('(',3)].strip() for i in y[6].split('), ')]]
-                Dict2['StartTime'] = Dict2['StartTime'] + [[datetime.strptime(i[3:i.find('(',3)].split('-')[0].strip(),'%H:%M') for i in y[6].split('), ')]]
-                Dict2['EndTime'] = Dict2['EndTime'] + [[datetime.strptime(i[3:i.find('(',3)].split('-')[1].strip(),'%H:%M') for i in y[6].split('), ')]]
+                Dict2['StartTime'] = Dict2['StartTime'] + [[datetime.strptime(i[i.find(':',0)-3:i.find('(',3)].split('-')[0].strip(),'%H:%M') for i in y[6].split('), ')]]
+                Dict2['EndTime'] = Dict2['EndTime'] + [[datetime.strptime(i[i.find(':',0)-3:i.find('(',3)].split('-')[1].strip(),'%H:%M') for i in y[6].split('), ')]]
                 dateList = y[6].split(', ')
                 z = [i[i.find('(')+7:i.find(')')].split(',') for i in dateList]
                 tmp2 = []
@@ -154,7 +154,7 @@ class Tab(URL):
                         tmp = tmp + [[[str(b[0]) + ';' + str(b[1]) + ';'+ str(b[2]) + ';'+ str(b[3]) + ';'+ str(b[4])] for b in a]]
                     except AttributeError:
                         continue
-                Dict2['Location'] = Dict2['Location']+ [tmp]
+                Dict2['Location'] = Dict2['Location']+ [tmp[-1]]
         # print(Dict2['Day/Start Time'])
         # print([len(Dict2[keys]) for keys in Dict2])
         # print(pd.DataFrame.from_dict(Dict2))
